@@ -103,6 +103,9 @@
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
     },
+    "modulePaths": [
+      "src"
+    ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
