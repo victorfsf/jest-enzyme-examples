@@ -1,0 +1,32 @@
+.tag-form {
+    input, button {
+        line-height: 17px;
+        height: 16px;
+        margin: 0;
+        padding: 0;
+        color: #888;
+    }
+    input {
+        background: none;
+        border: none;
+        outline: 0;
+        font-size: 14px;
+        font-family: 'Lato', sans-serif;
+        display: inline-block;
+
+        &::placeholder {
+            color: #ddd;
+        }
+    }
+    button {
+        border: none;
+        background: none;
+        font-family: 'Lato', sans-serif;
+        margin-left: 8px;
+        cursor: pointer;
+        outline: 0;
+        &:hover {
+            color: #912B2A;
+        }
+    }
+}

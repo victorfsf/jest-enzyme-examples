@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag renders a TagForm when the tag is clicked 1`] = `
+<TagForm
+  initialValues={
+    Object {
+      "name": "test",
+    }
+  }
+  onCancel={[Function]}
+  onSubmit={[Function]}
+/>
+`;
+
+exports[`Tag renders a tag 1`] = `
+<div
+  className="tag clickable"
+  onClick={[Function]}
+>
+  test
+</div>
+`;
+
+exports[`Tag renders a tag with a changed name 1`] = `
+<div
+  className="tag clickable"
+  onClick={[Function]}
+>
+  this is a new name
+</div>
+`;
