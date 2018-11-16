@@ -134,4 +134,12 @@ describe('Tag', () => {
 
     expect(mockedSubmit).not.toHaveBeenCalled();
   });
+
+  test('calls toggleFormOpen when the tag is clicked', () => {
+    const wrapper = shallow(<Tag name="test" />);
+    const mockedFormOpen = jest.fn();
+    wrapper.instance().toggleFormOpen = mockedFormOpen;
+    wrapper.simulate('click');
+    expect(mockedFormOpen).toHaveBeenCalled();
+  });
 });
