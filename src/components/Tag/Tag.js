@@ -14,12 +14,6 @@ class Tag extends Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    return {
-      name: nextProps.name,
-    };
-  }
-
   toggleFormOpen() {
     const { isFormOpen } = this.state;
     this.setState({

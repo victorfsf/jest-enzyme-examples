@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Tag from 'examples/Tag';
+import Tag from 'components/Tag';
 import './index.css';
 
 ReactDOM.render(

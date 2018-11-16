@@ -13,19 +13,21 @@ exports[`Tag renders a TagForm when the tag is clicked 1`] = `
 `;
 
 exports[`Tag renders a tag 1`] = `
-<div
+<button
   className="tag clickable"
   onClick={[Function]}
+  type="button"
 >
   test
-</div>
+</button>
 `;
 
 exports[`Tag renders a tag with a changed name 1`] = `
-<div
+<button
   className="tag clickable"
   onClick={[Function]}
+  type="button"
 >
   this is a new name
-</div>
+</button>
 `;
