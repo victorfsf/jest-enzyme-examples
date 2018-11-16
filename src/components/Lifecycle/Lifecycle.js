@@ -1,49 +1,57 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import Tag from 'components/Tag';
 
 class Lifecycle extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleLog('constructor', props);
   }
 
-  static getDerivedStateFromProps() {
-    console.log('getDerivedStateFromProps');
-    return {};
-  }
-
-  static getDerivedStateFromError() {
-    console.log('getDerivedStateFromError');
+  static getDerivedStateFromProps(props) {
+    console.log(`${props.type} getDerivedStateFromProps`);
     return {};
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
+    this.handleLog('componentDidMount');
   }
 
   shouldComponentUpdate() {
-    console.log('shouldComponentUpdate');
+    this.handleLog('shouldComponentUpdate');
+    return true;
   }
 
   componentDidUpdate() {
-    console.log('componentDidUpdate');
+    this.handleLog('componentDidUpdate');
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
+    this.handleLog('componentWillUnmount');
   }
 
   getSnapshotBeforeUpdate() {
-    console.log('getSnapshotBeforeUpdate');
+    this.handleLog('getSnapshotBeforeUpdate');
+    return null;
   }
 
-  componentDidCatch() {
-    console.log('componentDidCatch');
+  handleLog(method, props = this.props) {
+    const { type } = props;
+    console.log(`${type} ${method}`);
   }
 
   render() {
-    console.log('render');
-    return <div />;
+    const { type } = this.props;
+    this.handleLog('render');
+    return <Tag name={type} />;
   }
 }
+
+Lifecycle.propTypes = {
+  type: PropTypes.string.isRequired,
+};
 
 export default Lifecycle;

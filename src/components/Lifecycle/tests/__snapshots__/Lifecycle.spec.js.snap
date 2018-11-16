@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lifecycle shallow 1`] = `
+<Tag
+  name="shallow"
+/>
+`;
+
+exports[`Lifecycle shallow 2`] = `
+<button
+  className="tag clickable"
+  onClick={[Function]}
+  type="button"
+>
+  shallow
+</button>
+`;
+
+exports[`Lifecycle mount 1`] = `
+<Lifecycle
+  type="mount"
+>
+  <Tag
+    name="mount"
+  >
+    <button
+      className="tag clickable"
+      onClick={[Function]}
+      type="button"
+    >
+      mount
+    </button>
+  </Tag>
+</Lifecycle>
+`;
+
+exports[`Lifecycle render 1`] = `
+<button
+  class="tag clickable"
+  type="button"
+>
+  render
+</button>
+`;
