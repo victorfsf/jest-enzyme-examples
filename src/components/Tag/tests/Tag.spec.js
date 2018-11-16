@@ -63,7 +63,7 @@ describe('Tag', () => {
     expect(wrapper.state('name')).toEqual('this is a new name');
   });
 
-  test('doesnt change the tag name by passing the wrong id', () => {
+  test('doesnt change the tag name when passing the wrong id', () => {
     const wrapper = shallow(<Tag name="test" />);
     wrapper.simulate('click');
 
@@ -106,34 +106,6 @@ describe('Tag', () => {
   });
 
   /* MOCKS */
-
-  test('calls the tag\'s submit function if name.length > 0', () => {
-    const wrapper = shallow(<Tag name="test" />);
-    const mockedSubmit = jest.fn();
-    wrapper.instance().handleSubmit = mockedSubmit;
-    wrapper.simulate('click');
-
-    const tagForm = testTagChange(wrapper, 'name', 'this is a new name');
-    tagForm.simulate('submit', {
-      preventDefault: jest.fn(),
-    });
-
-    expect(mockedSubmit).toHaveBeenCalledTimes(1);
-  });
-
-  test('doesnt call the tag\'s submit function if name.length === 0', () => {
-    const wrapper = shallow(<Tag name="test" />);
-    const mockedSubmit = jest.fn();
-    wrapper.instance().handleSubmit = mockedSubmit;
-    wrapper.simulate('click');
-
-    const tagForm = testTagChange(wrapper, 'name', '');
-    tagForm.simulate('submit', {
-      preventDefault: jest.fn(),
-    });
-
-    expect(mockedSubmit).not.toHaveBeenCalled();
-  });
 
   test('calls toggleFormOpen when the tag is clicked', () => {
     const wrapper = shallow(<Tag name="test" />);

@@ -40,7 +40,7 @@ class Lifecycle extends Component {
 
   handleLog(method, props = this.props) {
     const { type } = props;
-    console.log(`${type} ${method}`);
+    console.log(`${type}: ${method}`);
   }
 
   render() {
