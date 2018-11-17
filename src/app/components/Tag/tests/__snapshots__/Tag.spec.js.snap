@@ -2,11 +2,7 @@
 
 exports[`Tag renders a TagForm when the tag is clicked 1`] = `
 <TagForm
-  initialValues={
-    Object {
-      "name": "test",
-    }
-  }
+  name="test"
   onCancel={[Function]}
   onSubmit={[Function]}
 />

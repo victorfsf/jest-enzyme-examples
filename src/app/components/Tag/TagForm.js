@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import { validateString } from 'app/utils';
+
 import styles from './TagForm.scss';
 import tagStyles from './Tag.scss';
 
@@ -9,7 +11,7 @@ class TagForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: props.initialValues,
+      value: props.name,
     };
     this.inputRef = React.createRef();
   }
@@ -23,27 +25,21 @@ class TagForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { onSubmit, onCancel } = this.props;
-    const { values } = this.state;
-    if (values.name.length > 0) {
-      onSubmit(e, values);
+    const { value } = this.state;
+    if (validateString(value)) {
+      onSubmit(e, value);
     }
     onCancel();
   }
 
   handleChange(e) {
-    const { id, value } = e.target;
-    const { values } = this.state;
-    this.setState({
-      values: {
-        ...values,
-        [id]: value,
-      },
-    });
+    const { value } = e.target;
+    this.setState({ value });
   }
 
   render() {
     const { onCancel } = this.props;
-    const { values } = this.state;
+    const { value } = this.state;
     return (
       <form
         className={classnames(tagStyles.tag, styles.tagForm)}
@@ -53,7 +49,7 @@ class TagForm extends Component {
           type="text"
           id="name"
           onChange={e => this.handleChange(e)}
-          value={values.name}
+          value={value}
           autoComplete="off"
           maxLength={35}
           placeholder="Please enter a tag name"
@@ -66,9 +62,7 @@ class TagForm extends Component {
 }
 
 TagForm.propTypes = {
-  initialValues: PropTypes.shape({
-    name: PropTypes.string,
-  }).isRequired,
+  name: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };

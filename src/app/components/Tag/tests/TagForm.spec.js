@@ -1,14 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import TagForm from 'components/Tag/TagForm';
+import TagForm from 'app/components/Tag/TagForm';
+import * as utils from 'app/utils';
 
 describe('TagForm', () => {
   /* SNAPSHOTS */
 
   test('renders a form', () => {
     const wrapper = shallow(<TagForm
-      initialValues={{ name: 'test' }}
+      name="test"
       onSubmit={jest.fn().mockName('mockedOnSubmit')}
       onCancel={jest.fn().mockName('mockedOnCancel')}
     />);
@@ -21,7 +22,7 @@ describe('TagForm', () => {
     const mockedOnCancel = jest.fn();
 
     const wrapper = shallow(<TagForm
-      initialValues={{ name: 'test' }}
+      name="test"
       onSubmit={jest.fn()}
       onCancel={mockedOnCancel}
     />);
@@ -34,7 +35,7 @@ describe('TagForm', () => {
     const mockedOnCancel = jest.fn();
 
     const wrapper = shallow(<TagForm
-      initialValues={{ name: 'test' }}
+      name="test"
       onSubmit={jest.fn()}
       onCancel={mockedOnCancel}
     />);
@@ -50,7 +51,7 @@ describe('TagForm', () => {
     const mockedPreventDefault = jest.fn();
 
     const wrapper = shallow(<TagForm
-      initialValues={{ name: 'test' }}
+      name="test"
       onSubmit={mockedOnSubmit}
       onCancel={jest.fn()}
     />);
@@ -67,7 +68,7 @@ describe('TagForm', () => {
     const mockedPreventDefault = jest.fn();
 
     const wrapper = shallow(<TagForm
-      initialValues={{ name: 'test' }}
+      name="test"
       onSubmit={mockedOnSubmit}
       onCancel={jest.fn()}
     />);
@@ -90,7 +91,7 @@ describe('TagForm', () => {
     const mockedHandleChange = jest.fn();
 
     const wrapper = shallow(<TagForm
-      initialValues={{ name: 'test' }}
+      name="test"
       onSubmit={jest.fn()}
       onCancel={jest.fn()}
     />);
@@ -105,5 +106,21 @@ describe('TagForm', () => {
       });
     });
     expect(mockedHandleChange).toHaveBeenCalledTimes(3);
+  });
+
+  test('calls validateString when submitting the form', () => {
+    const mockedValidateString = jest.spyOn(utils, 'validateString');
+
+    const wrapper = shallow(<TagForm
+      name="test"
+      onSubmit={jest.fn()}
+      onCancel={jest.fn()}
+    />);
+    wrapper.find('form').simulate('submit', {
+      preventDefault: jest.fn(),
+    });
+
+    expect(mockedValidateString).toHaveBeenCalledTimes(1);
+    mockedValidateString.mockRestore();
   });
 });

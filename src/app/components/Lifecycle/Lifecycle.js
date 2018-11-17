@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Tag from 'components/Tag';
+import Tag from 'app/components/Tag';
 
 class Lifecycle extends Component {
   constructor(props) {

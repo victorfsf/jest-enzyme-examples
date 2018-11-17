@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Tag from 'components/Tag';
+import Tag from 'app/components/Tag';
 
 describe('Tag', () => {
   const testTagChange = (wrapper, id, value) => {
@@ -61,22 +61,6 @@ describe('Tag', () => {
     });
 
     expect(wrapper.state('name')).toEqual('this is a new name');
-  });
-
-  test('doesnt change the tag name when passing the wrong id', () => {
-    const wrapper = shallow(<Tag name="test" />);
-    wrapper.simulate('click');
-
-    const tagForm = testTagChange(
-      wrapper,
-      'not-name',
-      'this is not a new name',
-    );
-    tagForm.simulate('submit', {
-      preventDefault: jest.fn(),
-    });
-
-    expect(wrapper.state('name')).toEqual('test');
   });
 
   test('doesnt change the tag name if cancel is clicked', () => {

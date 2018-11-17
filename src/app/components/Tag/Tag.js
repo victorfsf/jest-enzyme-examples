@@ -21,8 +21,7 @@ class Tag extends Component {
     });
   }
 
-  handleSubmit(e, values) {
-    const { name } = values;
+  handleSubmit(e, name) {
     this.setState({ name });
   }
 
@@ -30,7 +29,7 @@ class Tag extends Component {
     const { isFormOpen, name } = this.state;
     return isFormOpen ? (
       <TagForm
-        initialValues={{ name }}
+        name={name}
         onCancel={() => this.toggleFormOpen()}
         onSubmit={(e, values) => this.handleSubmit(e, values)}
       />

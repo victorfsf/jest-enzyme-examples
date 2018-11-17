@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 
-import Lifecycle from 'components/Lifecycle';
+import Lifecycle from 'app/components/Lifecycle';
 
 describe('Lifecycle', () => {
   test('shallow', () => {
