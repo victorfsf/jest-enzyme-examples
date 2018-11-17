@@ -1,2 +1,4 @@
 config/
 scripts/
+serviceWorker.js
+jestSetup.js
