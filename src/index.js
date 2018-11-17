@@ -5,6 +5,6 @@ import Tag from 'app/components/Tag';
 import './index.css';
 
 ReactDOM.render(
-  <Tag name="test" />,
+  <Tag name="Jest & Enzyme examples" />,
   document.getElementById('root'),
 );

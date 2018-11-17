@@ -123,4 +123,21 @@ describe('TagForm', () => {
     expect(mockedValidateString).toHaveBeenCalledTimes(1);
     mockedValidateString.mockRestore();
   });
+
+  test('doesnt submit the form when validateString returns false', () => {
+    const mockedValidateString = jest.spyOn(utils, 'validateString').mockReturnValue(false);
+    const mockedOnSubmit = jest.fn();
+    const wrapper = shallow(<TagForm
+      name="test"
+      onSubmit={mockedOnSubmit}
+      onCancel={jest.fn()}
+    />);
+    wrapper.find('form').simulate('submit', {
+      preventDefault: jest.fn(),
+    });
+
+    expect(mockedValidateString).toHaveBeenCalledTimes(1);
+    expect(mockedOnSubmit).not.toHaveBeenCalled();
+    mockedValidateString.mockRestore();
+  });
 });
