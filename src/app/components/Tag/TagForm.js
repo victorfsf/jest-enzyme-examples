@@ -28,8 +28,8 @@ class TagForm extends Component {
     const { value } = this.state;
     if (validateString(value)) {
       onSubmit(e, value);
+      onCancel();
     }
-    onCancel();
   }
 
   handleChange(e) {

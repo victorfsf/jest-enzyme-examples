@@ -31,7 +31,7 @@ describe('TagForm', () => {
     expect(mockedOnCancel).toHaveBeenCalledTimes(1);
   });
 
-  test('calls onCancel when ✖ the form is submitted', () => {
+  test('calls onCancel when the form is submitted', () => {
     const mockedOnCancel = jest.fn();
 
     const wrapper = shallow(<TagForm
@@ -63,14 +63,15 @@ describe('TagForm', () => {
     expect(mockedOnSubmit).toHaveBeenCalledTimes(1);
   });
 
-  test('doesnt call onSubmit when the form is submitted and name.length === 0', () => {
+  test('doesnt call onSubmit/onCancel when the form is submitted and name.length === 0', () => {
     const mockedOnSubmit = jest.fn();
+    const mockedOnCancel = jest.fn();
     const mockedPreventDefault = jest.fn();
 
     const wrapper = shallow(<TagForm
       name="test"
       onSubmit={mockedOnSubmit}
-      onCancel={jest.fn()}
+      onCancel={mockedOnCancel}
     />);
 
     wrapper.find('input#name').simulate('change', {
@@ -85,6 +86,7 @@ describe('TagForm', () => {
     });
     expect(mockedPreventDefault).toHaveBeenCalledTimes(1);
     expect(mockedOnSubmit).not.toHaveBeenCalled();
+    expect(mockedOnCancel).not.toHaveBeenCalled();
   });
 
   test('calls this.handleChange when the input changes', () => {
@@ -138,6 +140,23 @@ describe('TagForm', () => {
 
     expect(mockedValidateString).toHaveBeenCalledTimes(1);
     expect(mockedOnSubmit).not.toHaveBeenCalled();
+    mockedValidateString.mockRestore();
+  });
+
+  test('doesnt call onCancel when validateString returns false', () => {
+    const mockedValidateString = jest.spyOn(utils, 'validateString').mockReturnValue(false);
+    const mockedOnCancel = jest.fn();
+    const wrapper = shallow(<TagForm
+      name="test"
+      onSubmit={jest.fn()}
+      onCancel={mockedOnCancel}
+    />);
+    wrapper.find('form').simulate('submit', {
+      preventDefault: jest.fn(),
+    });
+
+    expect(mockedValidateString).toHaveBeenCalledTimes(1);
+    expect(mockedOnCancel).not.toHaveBeenCalled();
     mockedValidateString.mockRestore();
   });
 });
