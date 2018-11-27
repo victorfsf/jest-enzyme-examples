@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TagForm (Snapshots) renders a form 1`] = `
+<form
+  className="tag tagForm"
+  onSubmit={[Function]}
+>
+  <input
+    autoComplete="off"
+    id="name"
+    maxLength={35}
+    onChange={[Function]}
+    placeholder="Please enter a tag name"
+    type="text"
+    value="test"
+  />
+  <button
+    onClick={[MockFunction mockedOnCancel]}
+    type="button"
+  >
+    ✖
+  </button>
+</form>
+`;
+
 exports[`TagForm renders a form 1`] = `
 <form
   className="tag tagForm"

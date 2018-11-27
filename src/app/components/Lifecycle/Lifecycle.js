@@ -8,11 +8,11 @@ class Lifecycle extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleLog('constructor', props);
+    this.handleLog('constructor');
   }
 
   static getDerivedStateFromProps(props) {
-    console.log(`${props.type} getDerivedStateFromProps`);
+    console.log(`${props.type}: getDerivedStateFromProps`);
     return {};
   }
 
@@ -38,8 +38,8 @@ class Lifecycle extends Component {
     return null;
   }
 
-  handleLog(method, props = this.props) {
-    const { type } = props;
+  handleLog(method) {
+    const { type } = this.props;
     console.log(`${type}: ${method}`);
   }
 

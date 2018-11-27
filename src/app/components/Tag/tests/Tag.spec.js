@@ -3,40 +3,13 @@ import { shallow } from 'enzyme';
 
 import Tag from 'app/components/Tag';
 
-describe('Tag', () => {
-  const testTagChange = (wrapper, id, value) => {
-    const tagForm = wrapper.dive();
-    tagForm.find('input#name').simulate('change', { target: { id, value } });
-    return tagForm;
-  };
+const testTagChange = (wrapper, id, value) => {
+  const tagForm = wrapper.dive();
+  tagForm.find('input#name').simulate('change', { target: { id, value } });
+  return tagForm;
+};
 
-  /* SNAPSHOTS */
-
-  test('renders a tag', () => {
-    const wrapper = shallow(<Tag name="test" />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test('renders a TagForm when the tag is clicked', () => {
-    const wrapper = shallow(<Tag name="test" />);
-    wrapper.simulate('click');
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test('renders a tag with a changed name', () => {
-    const wrapper = shallow(<Tag name="test" />);
-    wrapper.simulate('click');
-
-    const tagForm = testTagChange(wrapper, 'name', 'this is a new name');
-    tagForm.simulate('submit', {
-      preventDefault: jest.fn(),
-    });
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  /* ENZYME */
-
+describe('Tag (Enzyme only)', () => {
   test('renders a TagForm then cancels back to the tag', () => {
     const wrapper = shallow(<Tag name="test" />);
     expect(wrapper.find('button.tag.clickable')).toHaveLength(1);
@@ -88,9 +61,34 @@ describe('Tag', () => {
 
     expect(wrapper.state('name')).toEqual('test');
   });
+});
 
-  /* MOCKS */
+describe('Tag (Snapshots)', () => {
+  test('renders a tag', () => {
+    const wrapper = shallow(<Tag name="test" />);
+    expect(wrapper).toMatchSnapshot();
+  });
 
+  test('renders a TagForm when the tag is clicked', () => {
+    const wrapper = shallow(<Tag name="test" />);
+    wrapper.simulate('click');
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('renders a tag with a changed name', () => {
+    const wrapper = shallow(<Tag name="test" />);
+    wrapper.simulate('click');
+
+    const tagForm = testTagChange(wrapper, 'name', 'this is a new name');
+    tagForm.simulate('submit', {
+      preventDefault: jest.fn(),
+    });
+
+    expect(wrapper).toMatchSnapshot();
+  });
+});
+
+describe('Tag (Mocks)', () => {
   test('calls toggleFormOpen when the tag is clicked', () => {
     const wrapper = shallow(<Tag name="test" />);
     const mockedFormOpen = jest.fn();

@@ -27,16 +27,17 @@ class Tag extends Component {
 
   render() {
     const { isFormOpen, name } = this.state;
+    const toggleForm = () => this.toggleFormOpen();
     return isFormOpen ? (
       <TagForm
         name={name}
-        onCancel={() => this.toggleFormOpen()}
+        onCancel={toggleForm}
         onSubmit={(e, values) => this.handleSubmit(e, values)}
       />
     ) : (
       <button
         className={classnames(styles.tag, styles.clickable)}
-        onClick={() => this.toggleFormOpen()}
+        onClick={toggleForm}
         type="button"
       >
         {name}

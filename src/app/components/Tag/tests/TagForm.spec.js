@@ -4,9 +4,7 @@ import { shallow } from 'enzyme';
 import TagForm from 'app/components/Tag/TagForm';
 import * as utils from 'app/utils';
 
-describe('TagForm', () => {
-  /* SNAPSHOTS */
-
+describe('TagForm (Snapshots)', () => {
   test('renders a form', () => {
     const wrapper = shallow(<TagForm
       name="test"
@@ -15,9 +13,9 @@ describe('TagForm', () => {
     />);
     expect(wrapper).toMatchSnapshot();
   });
+});
 
-  /* MOCKS */
-
+describe('TagForm (Mocks)', () => {
   test('calls onCancel when ✖ is clicked', () => {
     const mockedOnCancel = jest.fn();
 
