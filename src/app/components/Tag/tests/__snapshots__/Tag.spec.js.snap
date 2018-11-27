@@ -27,31 +27,3 @@ exports[`Tag (Snapshots) renders a tag with a changed name 1`] = `
   this is a new name
 </button>
 `;
-
-exports[`Tag renders a TagForm when the tag is clicked 1`] = `
-<TagForm
-  name="test"
-  onCancel={[Function]}
-  onSubmit={[Function]}
-/>
-`;
-
-exports[`Tag renders a tag 1`] = `
-<button
-  className="tag clickable"
-  onClick={[Function]}
-  type="button"
->
-  test
-</button>
-`;
-
-exports[`Tag renders a tag with a changed name 1`] = `
-<button
-  className="tag clickable"
-  onClick={[Function]}
-  type="button"
->
-  this is a new name
-</button>
-`;
