@@ -4,14 +4,14 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import reducers from './reducers';
-import Tag from './Tag';
+import ConnectedTag from './Tag';
 
 const store = createStore(reducers);
 
-const ConnectedTag = props => (
+const TagProvider = props => (
   <Provider store={store}>
-    <Tag {...props} />
+    <ConnectedTag {...props} />
   </Provider>
 );
 
-export default ConnectedTag;
+export default TagProvider;
