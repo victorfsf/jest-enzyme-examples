@@ -67,9 +67,13 @@ class TagForm extends Component {
 }
 
 TagForm.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+};
+
+TagForm.defaultProps = {
+  name: '',
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({

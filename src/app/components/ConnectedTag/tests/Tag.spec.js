@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
-import reducers from '../reducers';
 
 import Tag from 'app/components/ConnectedTag/Tag';
+
+import reducers from '../reducers';
 
 const mockStore = configureMockStore();
 
@@ -33,5 +35,27 @@ describe('Tag', () => {
       { type: 'TOGGLE_FORM' },
       { type: 'TOGGLE_FORM' },
     ]);
+  });
+
+  test('loads a Tag with the name set by the store state', () => {
+    // redux-mock-store doesn't apply reducer changes, so mockStore can't be used here.
+    const store = createStore(reducers, { tag: { name: 'test1' } });
+    const wrapper = mount(
+      <Provider store={store}>
+        <Tag name="test" />
+      </Provider>,
+    );
+    expect(wrapper.find('button').text()).toEqual('test1');
+  });
+
+  test('loads a TagForm when isFormOpen is true', () => {
+    // redux-mock-store doesn't apply reducer changes, so mockStore can't be used here.
+    const store = createStore(reducers, { tag: { isFormOpen: true } });
+    const wrapper = mount(
+      <Provider store={store}>
+        <Tag name="test" />
+      </Provider>,
+    );
+    expect(wrapper.find('TagForm')).toHaveLength(1);
   });
 });
