@@ -37,8 +37,8 @@ describe('Tag', () => {
     ]);
   });
 
-  test('loads a Tag with the name set by the store state', () => {
-    // redux-mock-store doesn't apply reducer changes, so mockStore can't be used here.
+  test('renders a Tag with the name set by the store state', () => {
+    // mockStore can't be used here because reducers wouldn't work with redux-mock-store.
     const store = createStore(reducers, { tag: { name: 'test1' } });
     const wrapper = mount(
       <Provider store={store}>
@@ -48,8 +48,8 @@ describe('Tag', () => {
     expect(wrapper.find('button').text()).toEqual('test1');
   });
 
-  test('loads a TagForm when isFormOpen is true', () => {
-    // redux-mock-store doesn't apply reducer changes, so mockStore can't be used here.
+  test('renders a TagForm when isFormOpen is true', () => {
+    // mockStore can't be used here because reducers wouldn't work with redux-mock-store.
     const store = createStore(reducers, { tag: { isFormOpen: true } });
     const wrapper = mount(
       <Provider store={store}>
