@@ -2,3 +2,4 @@ config/
 scripts/
 serviceWorker.js
 jestSetup.js
+node_modules/

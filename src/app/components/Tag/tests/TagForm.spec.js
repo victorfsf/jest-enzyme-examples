@@ -108,6 +108,59 @@ describe('TagForm (Mocks)', () => {
     expect(mockedHandleChange).toHaveBeenCalledTimes(3);
   });
 
+  test('calls handleChange 5 times with different arguments each time', () => {
+    const mockedHandleChange = jest.fn();
+
+    const wrapper = shallow(<TagForm
+      name="test"
+      onSubmit={jest.fn()}
+      onCancel={jest.fn()}
+    />);
+    wrapper.instance().handleChange = mockedHandleChange;
+
+    const values = [
+      'new value 1', 'new value 2', 'new value 3', 'new value 4', 'new value 5',
+    ];
+    values.forEach((value) => {
+      wrapper.find('input#name').simulate('change', {
+        target: {
+          id: 'name',
+          value,
+        },
+      });
+    });
+
+    expect(mockedHandleChange).toHaveBeenCalledTimes(5);
+    expect(mockedHandleChange.mock.calls).toHaveLength(5);
+    mockedHandleChange.mock.calls.forEach((call, i) => (
+      expect(call).toEqual([
+        { target: { id: 'name', value: values[i] } },
+      ])
+    ));
+  });
+
+  test('tag form\'s value changes before onSubmit is called', () => {
+    const mockedHandleSubmit = jest.fn();
+    const wrapper = shallow(<TagForm
+      name="test"
+      onSubmit={jest.fn()}
+      onCancel={jest.fn()}
+    />);
+    wrapper.instance().handleSubmit = mockedHandleSubmit;
+
+    wrapper.find('input#name').simulate('change', {
+      target: {
+        id: 'name',
+        value: 'new value',
+      },
+    });
+    wrapper.find('form').simulate('submit', { preventDefault: jest.fn() });
+
+    expect(mockedHandleSubmit).toHaveBeenCalledTimes(1);
+    expect(mockedHandleSubmit.mock.instances).toHaveLength(1);
+    expect(mockedHandleSubmit.mock.instances[0].state.value).toEqual('new value');
+  });
+
   test('calls validateString when submitting the form', () => {
     const mockedValidateString = jest.spyOn(utils, 'validateString');
 
