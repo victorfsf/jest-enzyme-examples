@@ -131,8 +131,11 @@ describe('TagForm (Mocks)', () => {
     });
 
     expect(mockedHandleChange).toHaveBeenCalledTimes(5);
-    expect(mockedHandleChange.mock.calls).toHaveLength(5);
-    mockedHandleChange.mock.calls.forEach((call, i) => (
+
+    const calls = mockedHandleChange.mock.calls;
+    expect(calls).toHaveLength(5);
+
+    calls.forEach((call, i) => (
       expect(call).toEqual([
         { target: { id: 'name', value: values[i] } },
       ])
