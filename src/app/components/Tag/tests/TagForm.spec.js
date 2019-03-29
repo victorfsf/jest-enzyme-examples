@@ -132,7 +132,7 @@ describe('TagForm (Mocks)', () => {
 
     expect(mockedHandleChange).toHaveBeenCalledTimes(5);
 
-    const calls = mockedHandleChange.mock.calls;
+    const { calls } = mockedHandleChange.mock;
     expect(calls).toHaveLength(5);
 
     calls.forEach((call, i) => (
